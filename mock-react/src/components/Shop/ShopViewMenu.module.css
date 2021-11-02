@@ -1,0 +1,31 @@
+.wrap {
+  margin: 20px auto;
+  width: 1200px;
+}
+
+.wrapBtn {
+  display: flex;
+  justify-content: space-between;
+}
+
+.shopName {
+  font-size: 50px;
+  text-decoration: underline;
+  color: #ed143d;
+}
+
+.shopView {
+  display: flex;
+  margin-top: 20px;
+}
+
+.shopInfo {
+  width: 300px;
+}
+
+.listContent {
+  width: 890px;
+  margin-left: 10px;
+  padding: 10px;
+  border: solid 1px #00000020;
+}
