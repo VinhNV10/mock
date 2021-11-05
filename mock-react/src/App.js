@@ -29,9 +29,9 @@ function App() {
           {authCtx.isLoggedIn && <UserProfile />}
           {!authCtx.isLoggedIn && <Redirect to='/auth' />}
         </Route>
-        {/* <Route path='*'>
+        <Route path='*'>
           <Redirect to='/' />
-        </Route> */}
+        </Route>
       </Switch>
     </Layout>
   );

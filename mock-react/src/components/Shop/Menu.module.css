@@ -1,0 +1,58 @@
+ul, li {
+	margin: 0;
+	padding: 0;
+}
+
+.itemList {
+	width: 100%;
+	display: flex;
+	margin-top: 20px;
+	flex-wrap: wrap;
+	padding: 15px;
+}
+
+.itemWrap:nth-child(n+3) {
+	margin-top: 10px;
+}
+
+.itemWrap:nth-child(2n) {
+	margin-left: 10px;
+}
+
+.itemWrap {
+	list-style-type: none;
+	width: calc(50% - 5px);
+	border: solid 1px #00000020;
+	border-radius: 10px;
+	position: relative;
+	padding: 15px;
+}
+
+.itemText {
+	margin: 0px;
+	font-size: 16px;
+}
+
+.imgFluid {
+	border-radius: 10px;
+}
+
+.iconClose {
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+
+.iconEdit {
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	top: 10px;
+	right: 50px;
+}
+
+.iconClose:hover, .iconEdit:hover {
+	cursor: pointer;
+}

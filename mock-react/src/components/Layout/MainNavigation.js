@@ -12,7 +12,10 @@ const MainNavigation = () => {
   const logoutHandler = () => {
     authCtx.logout();
     // optional: redirect the user
+    window.location.href = window.location.origin;
   };
+
+  const viewShopPath = `/host/admin/${authCtx.token}`;
 
   return (
     <header className={classes.header}>
@@ -28,7 +31,7 @@ const MainNavigation = () => {
           )}
           {isLoggedIn && (
             <li>
-              <Link to='/profile'>Profile</Link>
+              <a href={viewShopPath}>View Shop</a>
             </li>
           )}
           {isLoggedIn && (
