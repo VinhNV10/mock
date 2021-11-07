@@ -28,11 +28,9 @@ function App() {
             <AuthPage />
           </Route>
         )}
-        {!authCtx.isLoggedIn && (
-          <Route path="/shop/:id">
-            <AuthForm />
-          </Route>
-        )}
+        <Route path="/shop/:id">
+          <AuthForm />
+        </Route>
         <Route path="/card/:id">
           <CardPage />
         </Route>

@@ -22,8 +22,6 @@ const ShopViewMenu = (props) => {
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-    // const pathName = window.location.pathname;
-    // authCtx.login(pathName.replace("/admin/", ""));
     getShopInfo();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -47,7 +45,7 @@ const ShopViewMenu = (props) => {
       })
       .then((data) => {
         setshopInfo(data);
-        const listItem = data.items.filter(item => item.isActive);
+        const listItem = data.items.filter((item) => item.isActive);
         setListItem(listItem);
         setBusy(false);
       })
@@ -121,7 +119,7 @@ const ShopViewMenu = (props) => {
         shopId: authCtx.token,
       }),
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
     })
       .then((res) => {
@@ -140,7 +138,7 @@ const ShopViewMenu = (props) => {
       .catch((err) => {
         alert(err.message);
       });
-  }
+  };
 
   // Call API to remove item
   const updateItem = (enteredItemInput) => {
@@ -169,7 +167,70 @@ const ShopViewMenu = (props) => {
       .catch((err) => {
         alert(err.message);
       });
-  }
+  };
+
+  const changeStatus = (value, orderStatus) => {
+    const urlAPi = `${URL_API}/api/Order/status`;
+    fetch(urlAPi, {
+      method: "PUT",
+      body: JSON.stringify({
+        orderId: value.orderId,
+        OrderStatus: orderStatus,
+        customerId: value.customerId,
+        shopId: value.shopId,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return res.json().then((data) => {
+            let errorMessage = "Authentication failed!";
+            throw new Error(errorMessage);
+          });
+        }
+      })
+      .then(() => {
+        getOrdersList();
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
+
+  const cancelOrder = (value) => {
+    const urlAPi = `${URL_API}/api/Order/cancel`;
+    fetch(urlAPi, {
+      method: "PUT",
+      body: JSON.stringify({
+        orderId: value.orderId,
+        customerId: value.customerId,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return res.json().then((data) => {
+            let errorMessage = "Authentication failed!";
+            throw new Error(errorMessage);
+          });
+        }
+      })
+      .then((data) => {
+        alert(data.errorMessage);
+        getOrdersList();
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
 
   const copyShopLink = (event) => {
     const url =
@@ -237,17 +298,34 @@ const ShopViewMenu = (props) => {
               <p className={classes.listContent__title}>
                 List {isViewMenu ? "Menu" : "Orders"}
               </p>
-              <Button variant="primary" onClick={handleShow}>
-                Add new item
-              </Button>
+              {isViewMenu && (
+                <Button variant="primary" onClick={handleShow}>
+                  Add new item
+                </Button>
+              )}
             </div>
-            {isViewMenu && <Menu data={listItem} deleteItem={deleteItem} updateItem={updateItem}/>}
-            {!isViewMenu && <Orders data={ordersList.orders} />}
+            {isViewMenu && (
+              <Menu
+                data={listItem}
+                deleteItem={deleteItem}
+                updateItem={updateItem}
+              />
+            )}
+            {!isViewMenu && (
+              <Orders
+                data={ordersList.orders}
+                changeStatus={changeStatus}
+                cancelOrder={cancelOrder}
+              />
+            )}
           </div>
         </div>
       )}
-      {isBusy && <div className={classes.spiner}><Spinner animation="border" variant="danger" />
-      </div>}
+      {isBusy && (
+        <div className={classes.spiner}>
+          <Spinner animation="border" variant="danger" />
+        </div>
+      )}
       <AddItemForm
         handleClose={handleClose}
         addItem={addItem}

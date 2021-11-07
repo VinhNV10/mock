@@ -44,8 +44,31 @@ const CardList = (props) => {
       });
   };
 
+  const getAllOrder = () => {
+    const urlAPi = `${URL_API}/api/Order/${authCtx.customerId}/customer/all`;
+    fetch(urlAPi, {
+      method: "GET",
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          return res.json().then((data) => {
+            let errorMessage = "Authentication failed!";
+            throw new Error(errorMessage);
+          });
+        }
+      })
+      .then((data) => {
+        console.log(data);
+        setBusy(false);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  }
+
   const createOrder = () => {
-    debugger;
     const dataReq = {
       CartId: authCtx.cardId,
       deliveryInformation: 'Confirmed',
@@ -69,8 +92,8 @@ const CardList = (props) => {
         }
       })
       .then((data) => {
-        props.getCardInfo(false);
-        setBusy(false);
+        alert('Submit success');
+        getAllOrder();
       })
       .catch((err) => {
         alert(err.message);
