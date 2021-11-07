@@ -1,0 +1,41 @@
+.cardWrap {
+  width: 1200px;
+  margin: 50px auto;
+}
+.shopView, .orderView {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: solid 1px;
+  padding: 20px;
+  width: calc(50% - 20px);
+}
+
+.shopInfo {
+  width: 300px;
+}
+
+.image {
+  font-size: 20px;
+  width: 300px;
+}
+
+.spiner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.menuWrap {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.wrapContent {
+  display: flex;
+  justify-content: space-between;
+}

@@ -13,16 +13,16 @@ const Menu = (props) => {
   const handleShowDelete = (event) => {
     setShowDelete(true);
     getShopId(event);
-  }
+  };
 
   const handleCloseEdit = () => setShowEdit(false);
   const handleShowEdit = (event) => {
     setShowEdit(true);
     getShopId(event);
-  }
+  };
 
   const getShopId = (event) => {
-    const targetItem = event.currentTarget.parentElement;
+    const targetItem = event.currentTarget.closest('li');
     setShopId(targetItem.getAttribute("data-id"));
   };
 
@@ -32,38 +32,45 @@ const Menu = (props) => {
 
   const updateAction = () => {
     props.updateItem(shopId);
-  }
+  };
 
   return (
     <div>
-      {props.data.length && (
+      {props.data.length > 0 && (
         <ul className={classes.itemList}>
           {props.data.map((item, index) => (
             <li className={classes.itemWrap} key={index} data-id={item.itemId}>
-              <Figure>
-                <Figure.Image
-                  width={400}
-                  height={300}
-                  className={classes.imgFluid}
-                  alt="171x180"
-                  src={`data:image/png;base64, ${item.image}`}
-                />
-                <Figure.Caption>
-                  <p className={classes.itemText}>
-                    <b>Name: </b>
-                    {item.name}
-                  </p>
-                  <p className={classes.itemText}>
-                    <b>Price: </b>
-                    {item.price}$
-                  </p>
-                </Figure.Caption>
-              </Figure>
-              <FaWindowClose
-                className={classes.iconClose}
-                onClick={handleShowDelete}
-              />
-              <GrEdit className={classes.iconEdit} onClick={handleShowEdit} />
+              {item.isActive && (
+                <div>
+                  <Figure>
+                    <Figure.Image
+                      width={400}
+                      height={300}
+                      className={classes.imgFluid}
+                      alt="171x180"
+                      src={`data:image/png;base64, ${item.image}`}
+                    />
+                    <Figure.Caption>
+                      <p className={classes.itemText}>
+                        <b>Name: </b>
+                        {item.name}
+                      </p>
+                      <p className={classes.itemText}>
+                        <b>Price: </b>
+                        {item.price}$
+                      </p>
+                    </Figure.Caption>
+                  </Figure>
+                  <FaWindowClose
+                    className={classes.iconClose}
+                    onClick={handleShowDelete}
+                  />
+                  <GrEdit
+                    className={classes.iconEdit}
+                    onClick={handleShowEdit}
+                  />
+                </div>
+              )}
             </li>
           ))}
         </ul>

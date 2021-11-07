@@ -16,13 +16,14 @@ const ShopViewMenu = (props) => {
   const [ordersList, setOrderList] = useState({});
   const [isViewMenu, setView] = useState(true);
   const [show, setShow] = useState(false);
+  const [listItem, setListItem] = useState({});
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-    const pathName = window.location.pathname;
-    authCtx.login(pathName.replace("/host/admin/", ""));
+    // const pathName = window.location.pathname;
+    // authCtx.login(pathName.replace("/admin/", ""));
     getShopInfo();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -46,6 +47,8 @@ const ShopViewMenu = (props) => {
       })
       .then((data) => {
         setshopInfo(data);
+        const listItem = data.items.filter(item => item.isActive);
+        setListItem(listItem);
         setBusy(false);
       })
       .catch((err) => {
@@ -114,11 +117,11 @@ const ShopViewMenu = (props) => {
     fetch(urlAPi, {
       method: "DELETE",
       body: JSON.stringify({
-        itemId: enteredItemId,
+        ItemId: enteredItemId,
         shopId: authCtx.token,
       }),
       headers: {
-        'Content-Type': 'application/json-patch+json'
+        'Content-Type': 'application/json'
       },
     })
       .then((res) => {
@@ -171,8 +174,8 @@ const ShopViewMenu = (props) => {
   const copyShopLink = (event) => {
     const url =
       event.target.value === "0"
-        ? `${window.location.protocol}${window.location.host}/host/admin/${authCtx.token}`
-        : `${window.location.protocol}${window.location.host}/host/shop/${authCtx.token}`;
+        ? `${window.location.protocol}${window.location.host}/admin/${authCtx.token}`
+        : `${window.location.protocol}${window.location.host}/shop/${authCtx.token}`;
     navigator.clipboard.writeText(url);
   };
 
@@ -186,7 +189,7 @@ const ShopViewMenu = (props) => {
     <div className={classes.wrap}>
       <h1>
         Welcome to{" "}
-        <a className={classes.shopName} href={`/host/admin/${authCtx.token}`}>
+        <a className={classes.shopName} href={`/admin/${authCtx.token}`}>
           {shopInfo.name}
         </a>{" "}
         shop
@@ -238,7 +241,7 @@ const ShopViewMenu = (props) => {
                 Add new item
               </Button>
             </div>
-            {isViewMenu && <Menu data={shopInfo.items} deleteItem={deleteItem} updateItem={updateItem}/>}
+            {isViewMenu && <Menu data={listItem} deleteItem={deleteItem} updateItem={updateItem}/>}
             {!isViewMenu && <Orders data={ordersList.orders} />}
           </div>
         </div>

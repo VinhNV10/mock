@@ -1,12 +1,13 @@
-import { useContext } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { useContext } from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
 
-import Layout from './components/Layout/Layout';
-import UserProfile from './components/Profile/UserProfile';
-import AuthPage from './pages/AuthPage';
+import Layout from "./components/Layout/Layout";
+import AuthForm from "./components/Customer/AuthForm";
+import AuthPage from "./pages/AuthPage";
+import CardPage from "./pages/CardPage";
 import ShopPage from "./pages/ShopPage";
-import HomePage from './pages/HomePage';
-import AuthContext from './store/auth-context';
+import HomePage from "./pages/HomePage";
+import AuthContext from "./store/auth-context";
 
 function App() {
   const authCtx = useContext(AuthContext);
@@ -14,23 +15,29 @@ function App() {
   return (
     <Layout>
       <Switch>
-        <Route path='/' exact>
+        <Route path="/" exact>
           <HomePage />
         </Route>
-        <Route path="/host/admin/:id">
-          <ShopPage />
-        </Route>
+        {authCtx.isLoggedIn && (
+          <Route path="/admin/:id">
+            <ShopPage />
+          </Route>
+        )}
         {!authCtx.isLoggedIn && (
-          <Route path='/auth'>
+          <Route path="/auth">
             <AuthPage />
           </Route>
         )}
-        <Route path='/profile'>
-          {authCtx.isLoggedIn && <UserProfile />}
-          {!authCtx.isLoggedIn && <Redirect to='/auth' />}
+        {!authCtx.isLoggedIn && (
+          <Route path="/shop/:id">
+            <AuthForm />
+          </Route>
+        )}
+        <Route path="/card/:id">
+          <CardPage />
         </Route>
-        <Route path='*'>
-          <Redirect to='/' />
+        <Route path="*">
+          <Redirect to="/" />
         </Route>
       </Switch>
     </Layout>

@@ -1,0 +1,38 @@
+li {
+  list-style-type: none;
+}
+
+ul,
+li {
+  margin: 0;
+}
+
+.listItem {
+  text-align: left;
+}
+
+.itemWrap {
+  display: flex;
+}
+
+.itemWrap:not(:first-child) {
+  padding-top: 20px;
+  border-top: solid 1px;
+  margin-top: 20px;
+}
+
+.itemWrap img {
+  width: 300px;
+  margin-right: 10px;
+}
+
+.iconRemove {
+  width: 30px;
+  height: 30px;
+}
+
+.totalPrice {
+  margin-left: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}

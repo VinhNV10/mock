@@ -47,12 +47,14 @@ const AuthForm = () => {
         }
       })
       .then((data) => {
+        setIsLoading(false);
         authCtx.login(data.shopId);
         const theURL = window.location.pathname;
-        const newURL = theURL.replace(theURL, `/host/admin/${data.shopId}`);
+        const newURL = theURL.replace(theURL, `/admin/${data.shopId}`);
         window.location.href = `${newURL}`;
       })
       .catch((err) => {
+        setIsLoading(false);
         alert(err.message);
       });
   };
@@ -89,7 +91,7 @@ const AuthForm = () => {
       .then((data) => {
         authCtx.login(data.shopId);
         const theURL = window.location.pathname;
-        const newURL = theURL.replace(theURL, `/host/admin/${data.shopId}`);
+        const newURL = theURL.replace(theURL, `/admin/${data.shopId}`);
         window.location.href = `${newURL}`;
       })
       .catch((err) => {
@@ -104,7 +106,7 @@ const AuthForm = () => {
         {isLogin && (
           <form onSubmit={submitToView}>
             <div className={classes.control}>
-              <label htmlFor="shopId">Your Shop ID</label>
+              <label htmlFor="shopId">Your Phone</label>
               <input type="text" id="shopId" required ref={shopIdRef} />
             </div>
             <div className={classes.actions}>
