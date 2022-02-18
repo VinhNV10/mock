@@ -1,0 +1,93 @@
+@import "assets/styles/mixins";
+
+.timeline {
+	display: flex;
+	justify-content: center;
+  list-style-type: none;
+	padding-top: 45px;
+	padding-left: 0;
+	width: 100%;
+
+  @include respond(phone) {
+    display: flex;
+		flex-direction: column;
+		padding-top: 20px;
+		padding-left: 40px;
+		width: 100%;
+  }
+
+  &__list {
+    transition: all 200ms ease-in;
+    width: 100%;
+
+    &.complete .timeline__status {
+      border-top: 2px solid #66dc71;
+
+      @include respond(phone) {
+        border-top: none;
+        border-left: 2px solid #66dc71;
+      }
+    }
+
+    &.complete .timeline__status::before {
+      background-color: #66dc71;
+      border: none;
+      transition: all 200ms ease-in;
+    }
+
+    &.complete .timeline__status label {
+      color: #66dc71;
+    }
+  }
+
+  &__status {
+    padding: 0 40px;
+    display: flex;
+    justify-content: center;
+    border-top: 2px solid #d6dce0;
+    position: relative;
+    transition: all 200ms ease-in;
+
+    @include respond(phone) {
+      padding: 0px 40px;
+      display: flex;
+      justify-content: flex-start;
+      border-top: none;
+      border-left: 2px solid #d6dce0;
+      position: relative;
+      transition: all 200ms ease-in;
+    }
+
+    &::before {
+      content: "";
+      width: 25px;
+      height: 25px;
+      background-color: white;
+      text-align: center;
+      border-radius: 25px;
+      border: 1px solid #ddd;
+      position: absolute;
+      top: -15px;
+      transition: all 200ms ease-in;
+
+      @include respond(phone) {
+        content: "";
+        width: 25px;
+        height: 25px;
+        background-color: white;
+        border-radius: 25px;
+        border: 1px solid #ddd;
+        position: absolute;
+        top: 25%;
+        left: -13px;
+      }
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 1.5rem;
+      text-align: center;
+      font-size: 1.4rem;
+    }
+  }
+}

@@ -1,0 +1,77 @@
+@import "assets/styles/mixins";
+
+.cart-handle {
+  position: relative;
+  padding: 20px 25px 25px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
+  background-color: #fff;
+
+  @include respond(phone) {
+    padding: 20px 15px 25px;
+  }
+
+  &__total {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    margin-bottom: 10px;
+  }
+
+  &__txt {
+    font-size: 1.6rem;
+    text-transform: capitalize;
+    font-weight: bold;
+
+    @include respond(phone) {
+      font-size: 1.65rem;
+    }
+  }
+
+  &__price {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color:#ff514e;
+  }
+
+  &__btns {
+    display: flex;
+    align-items: center;
+  }
+
+  &__btn {
+    flex: 1;
+    color: #fff;
+    background-color: #ff514e;
+    border-radius: 16px;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.2);
+    padding: 8px 15px;
+    transition: all 0.35s ease-out;
+
+    &.Mui-disabled {
+      color: #fff;
+      background-color: #ff514e;
+    }
+
+    &:hover {
+      color: #fff;
+      background-color: rgba(#ff514e, 0.8);
+    }
+
+    &--buyMore {
+      color: #434655;
+      background-color: transparent;
+
+      &:hover {
+        color: #434655;
+        background-color: transparent;
+      }
+    }
+  }
+
+
+
+  &__btn:first-child {
+    margin-right: 20px;
+  }
+}

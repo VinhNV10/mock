@@ -1,0 +1,26 @@
+.error-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+
+  &__paper {
+    position: fixed;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    border-radius: 8px;
+  }
+
+  h2 {
+    margin: 0;
+    padding: 1rem;
+    background: #ff2058;
+    color: #fff;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  p {
+    padding: 20px 10px;
+  }
+}

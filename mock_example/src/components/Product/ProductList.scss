@@ -1,0 +1,22 @@
+@import "assets/styles/mixins";
+
+.product {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr));
+    grid-gap: 15px;
+    padding: 20px 0 20px 20px;
+  
+    @include respond(mobile) {
+      padding-top: 20px;
+    }
+  
+    @include respond(phone) {
+      grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+    }
+  }
+}

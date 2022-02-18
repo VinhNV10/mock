@@ -1,0 +1,49 @@
+.guest-nav {
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  &__left {
+    display: flex;
+  }
+
+  &__right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+  }
+
+  &__share {
+    cursor: pointer;
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    font-size: 14px;
+    padding: 3px;
+    margin: 0 8px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+
+    svg {
+      width: 18px;
+      height: 18px;
+      margin-right: 5px;
+    }
+  }
+
+  &__cart {
+    display: flex;
+    justify-items: center;
+  }
+}

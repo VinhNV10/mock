@@ -1,0 +1,57 @@
+.container {
+  max-height: 440px,
+}
+
+.newOrder {
+  background-color: #2f4cdd;
+  color: #fff;
+  border-radius: 0.75rem;
+  padding: 4px 10px;
+  line-height: 1.5;
+  border: 1px solid transparent;
+}
+
+.readyForPicUp {
+  background-color: #ff8306;
+  color: #fff;
+  border-radius: 0.75rem;
+  padding: 4px 10px;
+  line-height: 1.5;
+  border: 1px solid transparent;
+}
+
+.confirmed {
+  background-color: #dd2f6e;
+  color: #fff;
+  border-radius: 0.75rem;
+  padding: 4px 10px;
+  line-height: 1.5;
+  border: 1px solid transparent;
+}
+
+.sentToKitchen {
+  background-color: #f35757;
+  color: #fff;
+  border-radius: 0.75rem;
+  padding: 4px 10px;
+  line-height: 1.5;
+  border: 1px solid transparent;
+}
+
+.delivered {
+  background-color: #2bc155;
+  color: #fff;
+  border-radius: 0.75rem;
+  padding: 4px 10px;
+  line-height: 1.5;
+  border: 1px solid transparent;
+}
+
+.cancelled {
+  background-color: #343a40;
+  color: #fff;
+  border-radius: 0.75rem;
+  padding: 4px 10px;
+  line-height: 1.5;
+  border: 1px solid transparent;
+}

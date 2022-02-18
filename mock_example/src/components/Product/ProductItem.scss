@@ -1,0 +1,79 @@
+@import "assets/styles/mixins";
+
+.productItem {
+  position: relative;
+  cursor: pointer;
+
+  &__img {
+    height: 10rem;
+    @include respond(mobile) {
+      height: 16rem;
+    }
+
+    @include respond(phone) {
+      height: 8rem;
+    }
+  }
+
+  &:hover &__action {
+    visibility: visible;
+  }
+
+  &__name {
+    font-weight: 600;
+    font-size: 1.4rem;
+    margin: 8px 0 6px;
+    transition: color 0.15s ease-out;
+    text-align: center;
+  }
+
+  &__price {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #ff514e;
+    text-align: center;
+  }
+
+  &__action {
+    position: absolute;
+    top: 7px;
+    right: -3px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.15s linear;
+    @include respond(mobile) {
+      visibility: visible;
+      opacity: 1;
+      right: 8px;
+    }
+  }
+
+  &__addshop {
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
+    margin-bottom: 5px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.65);
+  }
+
+  &__addshop svg {
+    width: 1rem;
+    height: 100%;
+  }
+
+  @media (hover: hover) {
+    &__addshop:hover svg {
+      fill: #ff514e;
+    }
+  }
+
+  @media (hover: hover) {
+    &:hover &__action {
+      visibility: visible;
+      opacity: 1;
+      right: 8px;
+    }
+  }
+}
